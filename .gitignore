@@ -4,11 +4,23 @@
 ### IntelliJ IDEA ###
 .idea
 /.idea
-/backend-closette/.idea
-/frontend-closette/.idea
 *.iws
 *.iml
 *.ipr
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+# python
+.installed.cfg
+# bin
+develop-eggs
+dist
+# downloads
+eggs
+parts
+src/*.egg-info
+lib
+lib64
 
 # dependencies
 /node_modules
