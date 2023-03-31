@@ -1,0 +1,108 @@
+{% extends 'layout.html' %} 
+{% block title %}leads{% endblock %}
+
+{% block body %}
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">View secret leads</h1>
+        <p class="mb-4">
+          Here are your potential clients
+        </p>
+
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+              Leads table
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>Priority</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Description</th>
+                    <th>JobDescription</th>
+                    <th>LeadValue</th>
+                    <th>Status</th>
+                    <th>AddressStreet</th>
+                    <th>AddressNumber</th>
+                    <th>Town</th>
+                    <th>Country</th>
+                    <th>CompanySize</th>
+                    <th>PhoneNumber</th>
+                    <th>Industry</th>
+                    <th>CompanyName</th>
+                    <th>LeadSource</th>
+                    <th>LeadBudget</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>Priority</th>
+                    <th>FirstName</th>
+                    <th>LastName</th>
+                    <th>Description</th>
+                    <th>JobDescription</th>
+                    <th>LeadValue</th>
+                    <th>Status</th>
+                    <th>AddressStreet</th>
+                    <th>AddressNumber</th>
+                    <th>Town</th>
+                    <th>Country</th>
+                    <th>CompanySize</th>
+                    <th>PhoneNumber</th>
+                    <th>Industry</th>
+                    <th>CompanyName</th>
+                    <th>LeadSource</th>
+                    <th>LeadBudget</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+
+                {% for lead in result.records %}
+                  <tr>
+                    <td>{{lead.fields.Priority}}</td>
+                    <td>{{lead.fields.FirstName}}</td>
+                    <td>{{lead.fields.Description}}</td>
+                    <td>{{lead.fields.JobDescription}}</td>
+                    <td>{{lead.fields.Status}}</td>
+                    <td>{{lead.fields.LeadValue}}</td>
+                    <td>{{lead.fields.AddressStreet}}</td>
+                    <td>{{lead.fields.AddressNumber}}</td>
+                    <td>{{lead.fields.Town}}</td>
+                    <td>{{lead.fields.Country}}</td>
+                    <td>{{lead.fields.CompanySize}}</td>
+                    <td>{{lead.fields.PhoneNumber}}</td>
+                    <td>{{lead.fields.Industry}}</td>
+                    <td>{{lead.fields.CompanyName}}</td>
+                    <td>{{lead.fields.LeadSource}}</td>
+                    <td>{{lead.fields.LeadBudget}}</td>
+                  </tr>
+                  <!-- one table row -->
+                {% endfor %}                 
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    
+    </div>
+
+{% endblock %}
