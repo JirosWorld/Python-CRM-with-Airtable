@@ -35,6 +35,7 @@ lib64
 
 # misc
 .DS_Store
+static/.DS_Store
 Icon[\r]
 .env.local
 .env.development.local
