@@ -36,15 +36,17 @@ part 1: https://www.youtube.com/watch?v=1hjC1J5FfQ0
 
 part 2: https://www.youtube.com/watch?v=WKpWtZ7V79w
 
-first create empty databases on Airtable
-tool: https://www.uuidgenerator.net/
+first create empty databases on Airtable.
+
+Tool: https://www.uuidgenerator.net/
 
 ## Get Airtable API
 
 CreateReadUpdateDelete
-https://airtable.com/pricing
+https://airtable.com/
 
 Airtable generated documntation for these tables:
+
 https://airtable.com/app4vQ4CtiTItA8Rn/api/docs#curl/metadata
 
 ## About this app
@@ -71,3 +73,13 @@ The date is returned as a JSON object (becasue the GET method comes as a text ob
 You can GET individual fields from the Records array like such:
 
 `result['records'][0]['fields']['FirstName']`
+
+### POST
+
+For posting import 'request' from Flask
+
+`from flask import Flask, render_template, redirect, url_for, request`
+
+'request' without an 's' is an object from the Flask methods, which is very different from 'requests' with an s which is a library to perform the API calls.
+
+-

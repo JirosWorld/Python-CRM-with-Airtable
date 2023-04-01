@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, request
 import config
 import requests
 import json
@@ -20,25 +20,48 @@ xheaders = { 'authorization': 'Bearer {}'.format(app.config['AIRTABLE_KEY']), 'c
 def index():
     return render_template('index.html', **locals())
 
-@app.route('/users')
+@app.route('/users', methods=["GET", "POST"])
 def users():
-    url = 'https://api.airtable.com/v0/app4vQ4CtiTItA8Rn/Teams?maxRecords=10'
+    url = 'https://api.airtable.com/v0/app4vQ4CtiTItA8Rn/Teams?maxRecords=15'
     r = requests.get(url, headers=xheaders)
     result = json.loads(r.text)
     # print(result['records'])
+
+    if request.method == 'POST':
+        payload = {
+            "records": [
+                {
+                    "fields": {
+                        "teamId": request.form['teamId'],
+                        "FirstName": request.form['FirstName'],
+                        "LastName": request.form['LastName'],
+                        "JobTitle": request.form['JobTitle'],
+                        "Email": request.form['Email'],
+                        "PhoneNumber": request.form['PhoneNumber'],
+                        "ProfileImage": [{"url": request.form['ProfileImage']}],
+                    }
+                }
+            ]
+        }
+        requests.post(
+            "https://api.airtable.com/v0/app4vQ4CtiTItA8Rn/Teams",
+            json=payload,
+            headers=xheaders,
+        )
+        print(payload)
+        return redirect(url_for('users'))
+
     return render_template('users.html', **locals())
+
 
 @app.route('/leads')
 def leads():
-    url = 'https://api.airtable.com/v0/app4vQ4CtiTItA8Rn/Lead?maxRecords=5'
+    url = 'https://api.airtable.com/v0/app4vQ4CtiTItA8Rn/Lead?maxRecords=10'
     r = requests.get(url, headers=xheaders)
     result = json.loads(r.text)
     # print(result['records'])
     return render_template('leads.html', **locals())
 
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port='8888', debug=True)
 
 # 
 # extra, unused templates for now
@@ -46,11 +69,11 @@ if __name__ == '__main__':
 def blank():
     return render_template('blank.html', **locals())
     
-@app.route('/buttons')
+@app.route('/buttons/')
 def buttons():
     return render_template('buttons.html', **locals())
 
-@app.route('/cards')
+@app.route('/cards/')
 def cards():
     return render_template('cards.html', **locals())
 
@@ -80,7 +103,7 @@ def utilities_animation():
 
 @app.route('/utilities-border')
 def utilities_border():
-    return render_template('utilities-borderr.html', **locals())
+    return render_template('utilities-border.html', **locals())
 
 @app.route('/utilities-color')
 def utilities_color():
@@ -90,3 +113,7 @@ def utilities_color():
 def utilities_other():
     return render_template('utilities-other.html', **locals())
 
+#  keep this at the end of the file
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port='8888', debug=True)
