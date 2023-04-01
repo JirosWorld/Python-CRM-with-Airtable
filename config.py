@@ -2,7 +2,7 @@
 class Config(object):
     DEBUG = True
     TESTING = False
-    AIRTABLE_KEY = 'keyI4mfbOeSqQQ9Tq'
+    AIRTABLE_KEY = 'keyaaaaa11111'
 
 class DevelopmentConfig(Config):
     SECRET_KEY = "this-is-a-super-secret-key"
